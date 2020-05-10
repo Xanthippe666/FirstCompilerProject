@@ -1,0 +1,7 @@
+[abcdefg]*abc
+end
+{DE}
+[\b\r\n]
+["*+?"]
+[\X1F]
+[^abcdefg]*abc

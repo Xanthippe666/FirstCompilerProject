@@ -336,7 +336,8 @@ Nfa start, end;
 		}
 		*/
 		
-		while(lexer.MatchToken(Lexer.Token.EOS) != true) {
+		while(lexer.MatchToken(Lexer.Token.EOS) == false
+				&& lexer.MatchToken(Lexer.Token.OR) == false) {
 			//Checks for error symbols
 			first_in_cat(lexer.getCurrentToken());
 			NfaPair pairLocal = new NfaPair();
@@ -408,9 +409,43 @@ Nfa start, end;
     		//^必须在表达式的最开始
     		ErrorHandler.parseErr(ErrorHandler.Error.E_BOL);
     		return false;
+    	case OR:
+    		//|必须在表达式的中间
+    		ErrorHandler.parseErr(ErrorHandler.Error.E_OR);
+    		return false;
     	default:
     		return true;
 		}
 		
 	}
+	
+	public void expr(NfaPair pairOut) throws Exception {
+		//System.out.println("get first expression");
+		cat_expr(pairOut);
+		NfaPair localPair = new NfaPair();
+		//System.out.println("first cat_expr");
+		
+		
+		while(lexer.MatchToken(Lexer.Token.OR) == true) {
+			lexer.advance(); //skip the or
+			//System.out.println("skipped or");
+			cat_expr(localPair);
+			
+			
+			Nfa start = nfaManager.newNfa();
+			Nfa end = nfaManager.newNfa();
+			
+			start.next = pairOut.startNode;
+			start.next2 = localPair.startNode;
+			pairOut.startNode = start;
+			
+			pairOut.endNode.next = end;
+			localPair.endNode.next = end;
+			localPair.endNode = end;
+			
+		}
+		
+		
+	}
+	
 }

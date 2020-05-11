@@ -13,6 +13,7 @@ public class ErrorHandler {
 			E_BADMAC, //Missing a }
 			E_NOMAC, //Missing macro
 			E_MACDEPTH, //Too much depth in the macro hash-map
+			E_OR
 	}
 	
 	
@@ -27,7 +28,8 @@ public class ErrorHandler {
 			"Newline in quoted string, use \\n to get newline into expression",
 			"Missing } in macro expansion",
 			"Macro doesn't exist (in the hash map)",
-			"Macro expansions nested too deeply"
+			"Macro expansions nested too deeply",
+			"| must be between two terms"
 	};
 	
 	public static void parseErr(Error type) throws Exception {

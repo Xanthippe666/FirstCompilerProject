@@ -1,6 +1,7 @@
-[abcdefg]*abc
+aa|bb|cc
 end
 {DE}
+a|b
 [\b\r\n]
 ["*+?"]
 [\X1F]

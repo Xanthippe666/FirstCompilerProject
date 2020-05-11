@@ -95,6 +95,12 @@ public class Lexer {
 			charIndex++;
 		}
 		
+		if(charIndex >= curExpr.length()) {
+			currentToken = Token.EOS;
+			charIndex = 0;
+			return currentToken;
+		}
+		
 		sawEsc = (curExpr.charAt(charIndex) =='\\');
 		if(sawEsc && curExpr.charAt(charIndex + 1) != '"'
 				&& inQuoted == false) {

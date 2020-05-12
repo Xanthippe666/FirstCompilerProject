@@ -1,4 +1,4 @@
-aa|bb|cc
+{D}*\.{D}|{D}\.{D}*
 end
 {DE}
 a|b

@@ -341,8 +341,8 @@ Nfa start, end;
 			//Checks for error symbols
 			first_in_cat(lexer.getCurrentToken());
 			NfaPair pairLocal = new NfaPair();
-			pairLocal.startNode = nfaManager.newNfa();
-			pairLocal.endNode = nfaManager.newNfa();
+			//pairLocal.startNode = nfaManager.newNfa();
+			//pairLocal.endNode = nfaManager.newNfa();
 			factor(pairLocal);
 			/*
 			factorable = factor(pairLocal);

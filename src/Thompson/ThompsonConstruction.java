@@ -13,6 +13,8 @@ public class ThompsonConstruction {
 	RegularExpressionHandler regularexpr;
 	Lexer lexer;
 	NfaMachineConstructor nfaMachineConstructor;
+	NfaPair pair;
+	NfaInterpreter nfaInterpreter;
 	
 	public void runMacroExample() {
 		//input = new Input();
@@ -154,7 +156,7 @@ public class ThompsonConstruction {
 	private void runNfaMachineConstructorExample() throws Exception {
 		lexer = new Lexer(regularexpr);
 		nfaMachineConstructor = new NfaMachineConstructor(lexer);
-		NfaPair pair = new NfaPair();
+		 pair = new NfaPair();
 		//pair.endNode = nfaMachineConstructor.nfaManager.newNfa();
 		//pair.startNode = nfaMachineConstructor.nfaManager.newNfa();
 		//nfaMachineConstructor.constructNfaForCharacterSet(pair);
@@ -178,6 +180,12 @@ public class ThompsonConstruction {
 		System.out.println("nfa简单构造完毕");
 	}
 
+	
+    public void runNfaIntepretorExample() {
+    	nfaInterpreter = new NfaInterpreter(pair.startNode, input);
+    	nfaInterpreter.intepretNfa();
+    }
+    
 	public static void main(String[] args) throws Exception {
 		ThompsonConstruction construction = new ThompsonConstruction();
 		construction.runMacroExample();
@@ -186,6 +194,8 @@ public class ThompsonConstruction {
 		
 
     	construction.runNfaMachineConstructorExample();
+    	
+    	construction.runNfaIntepretorExample();
 	}
 
 	
